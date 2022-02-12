@@ -57,7 +57,7 @@ where $t_p$ is defined as the **time since periapsis**. Remember that periapsis 
 
 :::{math}
 :label: eq:time-since-periapsis
-\frac{\mu}{h^3}t = \int_{0}^{\nu}\frac{d\nu}{\left(1 + e\cos\nu\right)^2}
+\frac{\mu^3}{h^3}t = \int_{0}^{\nu}\frac{d\nu}{\left(1 + e\cos\nu\right)^2}
 :::
 
 The integral on the right-hand side of Eq. {eq}`eq:time-since-periapsis` can be found in standard tables of integrals {cite}`Gradshtein2007,Zwillinger2003`. There are three forms of the equation, depending on the value of $e$.
