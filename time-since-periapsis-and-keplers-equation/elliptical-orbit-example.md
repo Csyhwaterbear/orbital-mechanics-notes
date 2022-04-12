@@ -188,24 +188,25 @@ The modulus is the remainder after division. In Python, the modulus operator is 
 In MATLAB, the following code will give the same result:
 
 ```matlab
-function kepler
-    mu = 3.986e5; % km^3/s^2
-    rp = 9600; % km
-    ra = 21000; % km
-    e = (ra - rp)/(ra + rp);
-    a = (rp + ra)/2;
-    T = 2 * pi / sqrt(mu) * a^(3/2);
-    t2 = 3 * 3600; % sec
-    Me2 = 2 * pi * t_2 / T;
+% input
+mu = 3.986e5; % km^3/s^2
+rp = 9600; % km
+ra = 21000; % km
+e = (ra - rp)/(ra + rp);
+a = (rp + ra)/2;
+T = 2 * pi / sqrt(mu) * a^(3/2); % period
+t2 = 3 * 3600; % sec
+% calculation
+Me2 = 2 * pi * t2 / T;
 
-    function x = fun(E, M_e, e)
-        x = E - e * sin(E) - M_e;
-    end
+E2 = fzero(@(x) fun(x, Me2, e), [0, 2*pi]);
+nu2 = 2 * atan(sqrt((1 + e) / (1 - e)) * tan(E2 / 2));
+nu2 = mod(nu2, 2 * pi);
+% output
+fprintf('nu₂=%.2f°\n', rad2deg(nu2))
 
-    E2 = fzero(@(x) fun(x, M_e, e), [0, 2*pi]);
-    nu2 = 2 * atan(sqrt((1 + e) / (1 - e)) * tan(E / 2));
-    nu2 = mod(nu2, 2 * pi);
-    fprintf('nu₂=%.2f°\n', rad2deg(nu2))
+function x = fun(E, M_e, e)
+    x = E - e * sin(E) - M_e;
 end
 ```
 
